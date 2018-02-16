@@ -1,0 +1,20 @@
+{
+  "name": "1-net-media-server",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "knockout": "knockoutjs#^3.4.2",
+    "font-awesome": "^4.7.0",
+    "socket.io-client": "^2.0.4"
+  }
+}

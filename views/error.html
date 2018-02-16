@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title><%= typeof title !== 'undefined' ? title : __t(locale, '902b0d55fddef6f8d651fe1035b7d4bd'/*Error*/) %></title>
+    <link href="/styles/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="error-page">
+        <div class="content">
+            <h1><%= typeof title !== 'undefined' ? title : __t(locale, '902b0d55fddef6f8d651fe1035b7d4bd'/*Error*/) %></h1>
+            <% if (Array.isArray(message)) {
+                message.forEach(msg => { %>
+                <p><%- msg %></p>
+             <% });
+            } else { %>
+            <p><%- message %></p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title><%= __t(locale, '727ef48a966696b397969686d98729c8'/*1-NET Media Cast*/) %></title>
+    <link href="/styles/css/site.css" rel="stylesheet" />
+    <script type="text/javascript" src="/libs/jquery/dist/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="/libs/knockout/dist/knockout.js"></script>
+    <script type="text/javascript" src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/libs/socket.io-client/dist/socket.io.slim.js"></script>
+</head>
+
+<body>
+    <div class="content-root">
+        <div class="top-bar">
+            <!-- ko ifnot: audio_spectrum_disabled -->
+            <button type="button" class="btn btn-default" data-bind="click: toggle_audio_spectrum">
+                <i class="fa fa-toggle-on"></i>
+                <%= __t(locale, 'a6372960eb5f637f4eb638c37fbba239'/*With Audio Spectrum*/) %>
+            </button>
+            <!-- /ko -->
+            <!-- ko if: audio_spectrum_disabled -->
+            <button type="button" class="btn btn-default" data-bind="click: toggle_audio_spectrum">
+                <i class="fa fa-toggle-off"></i>
+                <%= __t(locale, 'e33fc08b5277222331004c679bfeb7b7'/*Without Audio Spectrum*/) %>
+            </button>
+            <!-- /ko -->
+            <!-- ko ifnot: video_spectrum_disabled -->
+            <button type="button" class="btn btn-default" data-bind="click: toggle_video_spectrum">
+                <i class="fa fa-toggle-on"></i>
+                <%= __t(locale, 'fc2c3d27c7d21e7ae2b6ebf5404e4343'/*With Audio Spectrum in Video*/) %>
+            </button>
+            <!-- /ko -->
+            <!-- ko if: video_spectrum_disabled -->
+            <button type="button" class="btn btn-default" data-bind="click: toggle_video_spectrum">
+                <i class="fa fa-toggle-off"></i>
+                <%= __t(locale, '0b1f0eacc565534bceddcf7c2de57bae'/*Without Audio Spectrum in Video*/) %>
+            </button>
+            <!-- /ko -->
+        </div>
+        <div class="channels-grid-1" data-bind="foreach: active_channels">
+            <!-- ko if: type === 'audio' -->
+            <div class="audio-player" data-bind="attr: { id: elem_id }">
+                <!-- ko if: support_stream -->
+                <!-- ko if: enable_spec -->
+                <div class="spectrum">
+                    <canvas></canvas>
+                    <div class="op">
+                        <a href="#" data-bind="click: close_spectrum">
+                            <i class="fa fa-window-close-o"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- /ko -->
+                <audio controls="controls" autoplay="autoplay" preload="auto" data-bind="attr: { src: '/stream-cast/' + (live_stream ? 'live' : 'file') + '/' + id }"></audio>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: type === 'video' || type === 'screen' -->
+            <div class="video-player" data-bind="attr: { id: elem_id }">
+                <!-- ko if: support_stream -->
+                <!-- ko if: enable_spec -->
+                <div class="spectrum">
+                    <canvas></canvas>
+                    <div class="op">
+                        <a href="#" data-bind="click: close_spectrum">
+                            <i class="fa fa-window-close-o"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- /ko -->
+                <video controls="controls" autoplay="autoplay" preload="auto" data-bind="attr: { id: 'video::' + id, src: '/stream-cast/' + (live_stream ? 'live' : 'file') + '/' + id }"></video>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: type === 'html' -->
+            <div></div>
+            <!-- /ko -->
+        </div>
+    </div>
+    <script type="text/javascript" src="/scripts/stream-cast.js"></script>
+</body>
+
+</html>

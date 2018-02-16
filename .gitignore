@@ -1,0 +1,11 @@
+.DS_Store
+*.log
+standalone-app.js
+config/config.js
+public/scripts/stream-cast.js
+public/*.log
+data/
+node_modules/
+public/bower_components/
+public/styles/css
+public/styles/less/*.css

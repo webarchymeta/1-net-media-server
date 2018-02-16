@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<res_schema type="nodejs-i18n" file_base="true">
+   <culture name="en" disply_name="英语" lcid="9" seed="true">
+      <page dir="Z:\Develop\CryptoGateway\Web\NodeJsServices\MembershipPlus\media\server" name="locales" dirty="false">
+         <item guid="902b0d55fddef6f8d651fe1035b7d4bd" content-type="text/plain" created="636541623285328120" last-modified="636541623303064971" last-access="636541623322462931" />
+         <item guid="727ef48a966696b397969686d98729c8" content-type="text/plain" created="636541638630335308" last-modified="636541638641071375" last-access="636541640212129888" />
+         <item guid="a6372960eb5f637f4eb638c37fbba239" content-type="text/plain" created="636541639830036361" last-modified="636541639839492676" last-access="636541640212129888" />
+         <item guid="e33fc08b5277222331004c679bfeb7b7" content-type="text/plain" created="636541640167405006" last-modified="636541640191245935" last-access="636541640643309053" />
+         <item guid="fc2c3d27c7d21e7ae2b6ebf5404e4343" content-type="text/plain" created="636543576405494557" last-modified="636543580057504208" last-access="636543580037630618" />
+         <item guid="0b1f0eacc565534bceddcf7c2de57bae" content-type="text/plain" created="636543577008492241" last-modified="636543580254219683" last-access="636543580105560147" />
+      </page>
+   </culture>
+   <culture display_name="中文(简体) - 传统用法" name="zh-CHS" lcid="4" seed="false">
+      <page dir="Z:\Develop\CryptoGateway\Web\NodeJsServices\MembershipPlus\media\server" name="locales" dirty="false">
+         <item guid="902b0d55fddef6f8d651fe1035b7d4bd" content-type="text/plain" created="636541632180344930" last-modified="636541632180349933" last-access="636541632180605111" />
+         <item guid="727ef48a966696b397969686d98729c8" content-type="text/plain" created="636541640979993512" last-modified="636541640979998515" last-access="636541640980198645" />
+         <item guid="a6372960eb5f637f4eb638c37fbba239" content-type="text/plain" created="636541641191410653" last-modified="636541641191415660" last-access="636541641191565650" />
+         <item guid="e33fc08b5277222331004c679bfeb7b7" content-type="text/plain" created="636541641354936672" last-modified="636541641354936672" last-access="636541641355186736" />
+         <item guid="fc2c3d27c7d21e7ae2b6ebf5404e4343" content-type="text/plain" created="636543578043440207" last-modified="636543580735502339" last-access="636543580735692466" />
+         <item guid="0b1f0eacc565534bceddcf7c2de57bae" content-type="text/plain" created="636543578325441511" last-modified="636543580543986300" last-access="636543580544266488" />
+      </page>
+   </culture>
+   <culture name="zh-CN" disply_name="中文(简体，中国)" lcid="2052" seed="false">
+      <page dir="Z:\Develop\CryptoGateway\Web\NodeJsServices\MembershipPlus\media\server" name="locales" dirty="false">
+         <item guid="902b0d55fddef6f8d651fe1035b7d4bd" content-type="text/plain" created="636541632749790347" last-modified="636541632749790347" last-access="636541632749790347" />
+         <item guid="727ef48a966696b397969686d98729c8" content-type="text/plain" created="636543576254099218" last-modified="636543576254099218" last-access="636543576254099218" />
+         <item guid="a6372960eb5f637f4eb638c37fbba239" content-type="text/plain" created="636543576254099218" last-modified="636543576254099218" last-access="636543576254099218" />
+         <item guid="e33fc08b5277222331004c679bfeb7b7" content-type="text/plain" created="636543576254099218" last-modified="636543576254099218" last-access="636543576254099218" />
+      </page>
+   </culture>
+</res_schema>

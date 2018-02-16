@@ -1,0 +1,12 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "editor.formatOnSave": true,
+    "beautify.onSaveIgnore": [
+        "**/*+(.|_|-)min.*",
+        "bin/*"
+    ],
+    "beautify.onSave": ["js", "css", "less"],
+    "bookmarks.navigateThroughAllFiles": true,
+    "bookmarks.useStickyBookmarks": true,
+    "git.ignoreLimitWarning": true
+}
