@@ -54,7 +54,7 @@
                 </div>
                 <!-- /ko -->
                 <!-- /ko -->
-                <audio controls="controls" autoplay="autoplay" preload="auto" data-bind="attr: { src: '/stream-cast/' + (live_stream ? 'live' : 'file') + '/' + id }"></audio>
+                <audio controls="controls" autoplay="autoplay" preload="auto" data-bind="attr: { src: '/stream-cast/' + (live_stream ? 'live' : 'file') + '/' + id + '?q=' + rand_qstr }"></audio>
             </div>
             <!-- /ko -->
             <!-- ko if: type === 'video' || type === 'screen' -->
@@ -71,7 +71,7 @@
                 </div>
                 <!-- /ko -->
                 <!-- /ko -->
-                <video controls="controls" autoplay="autoplay" preload="auto" data-bind="attr: { id: 'video::' + id, src: '/stream-cast/' + (live_stream ? 'live' : 'file') + '/' + id }"></video>
+                <video controls="controls" autoplay="autoplay" preload="auto" data-bind="attr: { id: 'video::' + id, src: '/stream-cast/' + (live_stream ? 'live' : 'file') + '/' + id + '?q=' + rand_qstr }"></video>
             </div>
             <!-- /ko -->
             <!-- ko if: type === 'html' -->

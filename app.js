@@ -10,17 +10,25 @@ const
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     session = require('cookie-session'),
+    winston = require('winston'),
     config = require(__dirname + '/config/config'),
     i18n = require(__dirname + '/lib/i18n-api'),
+    sqlite = require(__dirname + '/lib/sqlite-api'),
+    userStore = require(__dirname + '/lib/user-store'),
+    oauth = require(__dirname + '/lib/1-net-oauth2'),
     errorCatcher = require(__dirname + '/lib/error-catchers'),
     ws_handlers = require(__dirname + '/lib/ws-handlers'),
     logHandler = require(__dirname + '/lib/log-handler'),
     feed_target = require(__dirname + '/lib/feed-processor');
 
-const root = process.cwd();
+global.config = config;
 
-const app = express();
-let server;
+const
+    dns_service = require(__dirname + '/lib/dns-service'),
+    root = process.cwd(),
+    app = express();
+
+let server, logdir;
 if (config.web.tls && config.web.tls.enabled) {
     const fs = require('fs');
     server = require('https').createServer({
@@ -29,6 +37,14 @@ if (config.web.tls && config.web.tls.enabled) {
     }, app);
 } else {
     server = require('http').createServer(app);
+}
+
+winston.level = config.log && config.log.winston && config.log.winston.level ? config.log.winston.level : 'info';
+if (config.log && config.log.winston.file && config.log.winston.file.enabled) {
+    winston.add(winston.transports.File, {
+        filename: (logdir ? logdir : '') + 'logs/server.log',
+        level: config.log.winston.file.level || 'info'
+    });
 }
 
 const routes = require(__dirname + '/routes/index');
@@ -43,7 +59,6 @@ i18n.configure({
 
 app.use(i18n.normalize);
 app.use(i18n.init);
-// view engine setup
 app.set('views', path.join(root, 'views'));
 app.engine('.html', ejs.__express);
 app.set('view options', {
@@ -68,18 +83,29 @@ errorCatcher(app);
 const feed_server = net.createServer(feed_target);
 
 feed_server.on('error', err => {
-    console.log('feed server error:');
+    winston.log('error', 'feed server error:');
     console.log(err);
 });
 
 feed_server.listen(config.tcp, () => {
-    console.log('feed server listening on port ' + config.tcp.port + ' at ' + (config.tcp.host ? config.tcp.host : '*'));
+    global.feed_server = {
+        host: config.tcp.host,
+        port: config.tcp.port
+    };
+    winston.log('info', 'feed server listening on port ' + config.tcp.port + ' at ' + (config.tcp.host ? config.tcp.host : '*'));
 });
 
 server.on("listening", () => {
-    console.log('web server listening on port ' + config.web.port + ' at ' + (config.web.host ? config.web.host : '*'));
+    global.web_server = {
+        host: config.web.host,
+        port: config.web.port
+    };
+    winston.log('info', 'web server listening on port ' + config.web.port + ' at ' + (config.web.host ? config.web.host : '*'));
 });
 
 server.listen(config.web.port, config.web.host, undefined);
 
 ws_handlers(socket_io(server));
+
+const dns = new dns_service.service();
+dns.init();

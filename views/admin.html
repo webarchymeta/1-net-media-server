@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title><%= __t(locale, 'e3afed0047b08059d0fada10f400c1e5'/*Admin*/)  + ' -- ' + title_ex %></title>
+    <link href="/styles/css/site.css" rel="stylesheet" />
+    <script type="text/javascript" src="/libs/jquery/dist/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="/libs/knockout/dist/knockout.js"></script>
+    <script type="text/javascript" src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <div class="top-strip">
+            <div class="content">
+                <div class="item" style="grid-column: 1 / 2">
+                    <a href="/">
+                        <%= __t(locale, '8cf04a9734132302f96da8e113e80ce5'/*Home*/) %>
+                    </a>
+                </div>
+                <div class="item dropdown" style="grid-column: 2 / 3">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <%= __t(locale, '926dec9494209cb088b4962509df1a91'/*Gateway*/) %> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <% if (!client_mode) { %>
+                        <li>
+                            <a href="<%= gw_web_path %>"><%= __t(locale, '2805a660848eea99b67240bb9e18404e'/*Web Interface*/) %></a>
+                        </li>
+                        <li>
+                            <a href="<%= gw_console_path %>"><%= __t(locale, '62a1b0eff83555d5b30e9c4d9bffc85a'/*Remote Console*/) %></a>
+                        </li>
+                        <% } else if (client_mode === 'web') { %>
+                        <li>
+                            <a href="<%= gw_web_path %>"><%= __t(locale, '2805a660848eea99b67240bb9e18404e'/*Web Interface*/) %></a>
+                        </li>
+                        <li>
+                            <a href="#" data-bind="click: () => { stop('web'); }"><%= __t(locale, 'e9735c19bb39b4c7b77eeada12c57d91'/*Stop Server*/) %></a>
+                        </li>
+                        <% } else if (client_mode === 'console') { %>
+                        <li>
+                            <a href="<%= gw_console_path %>"><%= __t(locale, '62a1b0eff83555d5b30e9c4d9bffc85a'/*Remote Console*/) %></a>
+                        </li>
+                        <li>
+                            <a href="#" data-bind="click: () => { stop('console'); }"><%= __t(locale, 'e9735c19bb39b4c7b77eeada12c57d91'/*Stop Server*/) %></a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </div>
+                <div class="item" style="grid-column: 2 / 3">
+                </div>
+                <div class="item" style="grid-column: 3 / 4">
+                    <a href="/help">
+                        <%= __t(locale, '6a26f548831e6a8c26bfbbd9f6ec61e0'/*Help*/) %>
+                    </a>
+                </div>
+                <div class="item<%= login? ' dropdown' : '' %>" style="grid-column: 12 / 13">
+                    <% if (login) {%>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <%= login.name %> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/logout"><%= __t(locale, '0323de4f66a1700e2173e9bcdce02715'/*Logout*/) %></a>
+                        </li>
+                    </ul>
+                    <%} else {%>
+                    <a href="/login"><%= __t(locale, '99dea78007133396a7b8ed70578ac6ae'/*Login*/) %></a>
+                    <%} %>
+                </div>
+            </div>
+        </div>
+        <div class="page-container">
+            <div class="admin-panel">
+                <div class="node-label-strip">
+                    <div style="grid-column: 1 / 2">
+                        <%= __t(locale, '39c4924398b0df473dac53a444f87341'/*Current Node Label:*/) %>
+                    </div>
+                    <div style="grid-column: 2 / 3">
+                        <input type="text" class="form-control input" data-bind="value: node_label" />
+                    </div>
+                    <div style="grid-column: 3 / 4">
+                        <!-- ko if: is_label_changed -->
+                        <a href="#" data-bind="click: update_label" title="<%= __t(locale, '2a1dfffdf67279255e8f8c0b1f2d39e6'/*update node label ...*/) %>">
+                            <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko ifnot: is_label_changed -->
+                        <a href="#">
+                            <i class="fa fa-square-o" aria-hidden="true"></i>
+                        </a>
+                        <!-- /ko -->
+                    </div>
+                </div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#sec-profiles" aria-controls="sec-profiles" role="tab" data-toggle="tab">
+                            <%= __t(locale, 'e17c0f1310f52fbac11ab50f92379826'/*Security Profiles*/) %>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#user-roles" aria-controls="user-roles" role="tab" data-toggle="tab">
+                            <%= __t(locale, '7cc2d2e46cec80108de65235b279edea'/*User Roles*/) %>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#access-endpoints" aria-controls="access-endpoints" role="tab" data-toggle="tab">
+                            <%= __t(locale, 'd0c2b86957f067d2f44b8bff85f61a54'/*Access Endpoints*/) %>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="sec-profiles">
+                        <% include _security_profiles.html %>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="user-roles">
+                        <% include _role_assignment.html %>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="access-endpoints">
+                        <% include _access_endpoints.html %>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <% include _footer.html %>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/scripts/admin.js"></script>
+</body>
+
+</html>

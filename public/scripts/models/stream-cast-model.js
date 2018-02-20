@@ -17,6 +17,7 @@ const channel = function (p, data) {
     const parent = p;
     self.id = data.id;
     self.elem_id = data.type + '_' + data.id.replace('::', '_');
+    self.rand_qstr = '_' + Math.floor(10000 * Math.random());
     self.type = data.type;
     self.live_stream = !!data.live_stream;
     self.mime_type = data.mime_type;
