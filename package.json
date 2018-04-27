@@ -9,6 +9,7 @@
   "author": "archymeta",
   "license": "MIT",
   "dependencies": {
+    "ajv": "^6.4.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
@@ -53,7 +54,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-shell": "^2.1.0",
     "grunt-sync": "^0.7.0",
-    "less": "^2.7.3",
+    "less": "^3.0.2",
     "loader": "^2.1.1",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
