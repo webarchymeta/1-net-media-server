@@ -1,7 +1,6 @@
 const
     path = require('path'),
-    nodeExternals = require('webpack-node-externals'),
-    UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+    nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     target: 'node',
@@ -21,14 +20,12 @@ module.exports = {
             use: {
                 loader: 'babel-loader',
                 options: {
-                    presets: ['es2015']
+                    presets: ['env']
                 }
             }
         }]
     },
-    plugins: [
-        new UglifyJSPlugin()
-    ],
+    plugins: [],
     externals: [
         nodeExternals(),
         function (context, request, callback) {

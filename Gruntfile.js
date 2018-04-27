@@ -88,7 +88,7 @@
             packClient: {
                 command: [
                     'cd public',
-                    'webpack --progress',
+                    'webpack -d --progress',
                     'cd ..'
                 ].join('&&')
             },
