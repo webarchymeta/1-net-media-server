@@ -1,6 +1,6 @@
-# 1-NET media server
+# V-NET media server
 
-A media server for 1-NET.
+A media server for V-NET.
 
 **Install instructions**
 
